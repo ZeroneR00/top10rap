@@ -12,9 +12,25 @@ export const rappers: Rapper[] = [{
 {
     id: "2",
     slug: "kizaru",
-    name: "Kizaru",
+    name: "Олег Нечипоренко",
     image: "https://via.placeholder.com/150",
     rank: 2,
     bio: "Kizaru is a Russian rapper. He is one of the most influential and successful artists of the 21st century."
+},
+{
+    id: "3",
+    slug: "eminem",
+    name: "Eminem",
+    image: "https://via.placeholder.com/150",
+    rank: 3,
+    bio: "Eminem is an American rapper, songwriter, and producer. He is one of the most influential and successful artists of the 21st century."
+},
+{
+    id: "4",
+    slug: "Skrip",
+    name: "Адиль Жалелов",
+    image: "https://via.placeholder.com/150",
+    rank: 4,
+    bio: "Скриптонит is a Russian rapper. He is one of the most influential and successful artists of the 21st century."
 }
 ]
