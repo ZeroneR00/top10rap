@@ -5,6 +5,7 @@ export interface Rapper {
     realName?: string;
     image: string;
     rank: number;
+    tags?: string[];
     bio?: string;
     // more if need
   }

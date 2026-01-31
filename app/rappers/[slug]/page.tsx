@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 
 import { rappers } from '@/app/data/rappers'
+import Tags from '@/app/components/Tags'
 
 
 export default async function RapperPage({
@@ -75,11 +76,12 @@ export default async function RapperPage({
                         </div>
 
                         {/* Доп информация */}
-                        <div className="flex gap-3 mb-6">
+                        <Tags tags={rapper.tags}/>
+                        {/* <div className="flex gap-3 mb-6">
                             <span className="px-3 py-1 bg-gray-800 rounded-full">Хип-хоп</span>
                             <span className="px-3 py-1 bg-gray-800 rounded-full">Трэп</span>
                             <span className="px-3 py-1 bg-red-600 rounded-full font-bold">Легенда</span>
-                        </div>
+                        </div> */}
 
                         {/* Кнопка */}
                         {/* <button className="w-full md:w-auto px-6 py-3 bg-purple-600 rounded-lg font-semibold hover:bg-purple-700 transition">
