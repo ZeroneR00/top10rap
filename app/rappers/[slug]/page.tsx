@@ -24,7 +24,16 @@ export default async function RapperPage({
 
                 {/* Верхний градиентный блок */}
                 <div className="relative h-48 bg-gradient-to-r from-purple-900 via-gray-900 to-black">
+
                     <div className="absolute bottom-4 left-6">
+                        <div className="mb-8 text-center">
+                            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">
+                                Топ 10 Рэперов
+                            </h1>
+                            <p className="text-gray-300 text-lg mb-6">
+                                Найдите своего любимого исполнителя
+                            </p>
+                        </div>
                         <span className="bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-bold">
                             Ранг: {rapper.id}
                         </span>
@@ -76,7 +85,7 @@ export default async function RapperPage({
                         </div>
 
                         {/* Доп информация */}
-                        <Tags tags={rapper.tags}/>
+                        <Tags tags={rapper.tags} />
                         {/* <div className="flex gap-3 mb-6">
                             <span className="px-3 py-1 bg-gray-800 rounded-full">Хип-хоп</span>
                             <span className="px-3 py-1 bg-gray-800 rounded-full">Трэп</span>
@@ -87,7 +96,12 @@ export default async function RapperPage({
                         {/* <button className="w-full md:w-auto px-6 py-3 bg-purple-600 rounded-lg font-semibold hover:bg-purple-700 transition">
                             Слушать треки
                         </button> */}
-                        <Link className="w-full md:w-auto px-6 py-3 bg-purple-600 rounded-lg font-semibold hover:bg-purple-700 transition" href="/">Назад</Link>
+                        <Link
+                            className="inline-block px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50"
+                            href="/rappers"
+                        >
+                            Назад
+                        </Link>
 
                     </div>
                 </div>
