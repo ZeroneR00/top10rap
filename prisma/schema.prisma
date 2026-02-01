@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Rapper {
+  id Int @id @default(autoincrement())
+  slug String @unique
+  name String
+  realName String?
+  image String
+  rank Int
+  tags Tag[]
+  bio String?
+  albums Album[]
+  awards Award[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Tag {
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rappers Rapper[]
+}
+
+model Album {
+  id Int @id @default(autoincrement())
+  name String
+  year Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rapper Rapper @relation(fields: [rapperId], references: [id])
+  rapperId Int
+}
+
+model Award {
+  id Int @id @default(autoincrement())
+  name String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rapper Rapper @relation(fields: [rapperId], references: [id])
+  rapperId Int
+}

@@ -3,6 +3,7 @@ import Link from 'next/link'
 
 import { rappers } from '@/app/data/rappers'
 import Tags from '@/app/components/Tags'
+import Image from 'next/image'
 
 
 export default async function RapperPage({
@@ -44,13 +45,13 @@ export default async function RapperPage({
 
                     {/* Левая часть - фото */}
                     <div className="md:w-1/3 mb-6 md:mb-0 md:pr-8">
-                        <div className="relative -mt-20 mb-6">
+                        <div className="relative mb-6">
                             <div className="w-40 h-40 rounded-xl overflow-hidden border-4 border-gray-800 shadow-xl">
-                                <img
-                                    src="/rapper.jpg"
-                                    alt="Рэпер"
-                                    className="w-full h-full object-cover"
-                                />
+                                <Image
+                                    src="/images/rappers/photo.jpg"
+                                    alt="описание"
+                                    width={160}
+                                    height={160} />
                             </div>
                         </div>
 
