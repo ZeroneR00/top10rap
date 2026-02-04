@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../app/generated/prisma"
+  provider = "prisma-client-js"
+  // output   = "../app/generated/prisma"
 }
 
 datasource db {
@@ -32,7 +32,7 @@ model Rapper {
 
 model Tag {
   id Int @id @default(autoincrement())
-  name String
+  name String @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   rappers Rapper[]

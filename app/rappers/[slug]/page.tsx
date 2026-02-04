@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-
-import { rappers } from '@/app/data/rappers'
+import { prisma } from '@/app/lib/prisma'
 import Tags from '@/app/components/Tags'
 import Image from 'next/image'
 
@@ -13,7 +12,14 @@ export default async function RapperPage({
 }) {
     const { slug } = await params
 
-    const rapper = rappers.find(r => r.slug === slug)
+    // const rapper = rappers.find(r => r.slug === slug)
+
+    const rapper = await prisma.rapper.findFirst({
+        where: {
+            slug: slug
+        },
+        include: { tags: true }
+    })
 
     if (!rapper) {
         notFound()

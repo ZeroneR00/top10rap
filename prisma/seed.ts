@@ -1,8 +1,16 @@
-import { PrismaClient } from '../app/generated/prisma'
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
 async function main() {
+
+    await prisma.rapper.deleteMany({})
+    await prisma.tag.deleteMany({})
+    await prisma.album.deleteMany({})
+    await prisma.award.deleteMany({})
+    
+    console.log('🗑️ Cleared database')
+
     const tags = await prisma.tag.createMany({
         data: [
             { name: 'Хип-хоп' },

@@ -1,4 +1,4 @@
-import { Rapper } from '../types'
+import { Rapper } from '@prisma/client'
 
 export default function RapperCard({ rapper }: { rapper: Rapper }) {
     console.log(rapper)
