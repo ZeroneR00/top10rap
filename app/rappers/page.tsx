@@ -3,8 +3,16 @@ import Link from 'next/link'
 import RapperList from "../components/RapperList";
 
 
-export default async function Rapper() {
-    const rappers = await prisma.rapper.findMany()
+export default async function Rapper({ searchParams }: { searchParams: Promise<{ tag?: string }> })  {
+    const params = await searchParams
+    const selectedTag = params.tag
+
+    const rappers = await prisma.rapper.findMany({
+        where: selectedTag 
+            ? { tags: { some: { name: selectedTag } } }
+            : {},
+        include: { tags: true }
+    })
 
     return (
         <main className="min-h-screen bg-gradient-to-br from-purple-900 via-gray-900 to-black p-4 md:p-8">

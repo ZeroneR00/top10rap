@@ -1,7 +1,6 @@
 import { Rapper } from '@prisma/client'
 
 export default function RapperCard({ rapper }: { rapper: Rapper }) {
-    console.log(rapper)
     return (
         <div className="p-6 bg-gray-800 border border-gray-700 rounded-xl shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:border-purple-500 cursor-pointer">
             <div className="flex items-center justify-between mb-4">
