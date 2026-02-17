@@ -8,7 +8,7 @@ async function main() {
     await prisma.tag.deleteMany({})
     await prisma.album.deleteMany({})
     await prisma.award.deleteMany({})
-    
+
     console.log('🗑️ Cleared database')
 
     const tags = await prisma.tag.createMany({
@@ -32,6 +32,17 @@ async function main() {
             bio: 'Kanye West is an American rapper, songwriter, and fashion designer. He is one of the most influential and successful artists of the 21st century.',
             tags: {
                 connect: [{ name: 'Хип-хоп' }, { name: 'Легенда' }]  // связь!
+            },
+            albums: {
+                create: [
+                    { name: 'The Eminem Show', year: 2002 },
+                    { name: 'Slim Shady LP', year: 1999 },
+                ]
+            },
+            awards: {
+                create: [
+                    { name: 'Grammy Award' },
+                ]
             }
         }
     })
@@ -45,6 +56,17 @@ async function main() {
             bio: 'Kizaru is a Russian rapper. He is one of the most influential and successful artists of the 21st century.',
             tags: {
                 connect: [{ name: 'Хип-хоп' }, { name: 'Россия' }, { name: 'Новый school' }]  // связь!
+            },
+            albums: {
+                create: [
+                    { name: 'The Eminem Show', year: 2002 },
+                    { name: 'Slim Shady LP', year: 1999 },
+                ]
+            },
+            awards: {
+                create: [
+                    { name: 'Grammy Award' },
+                ]
             }
         }
     })
@@ -58,6 +80,17 @@ async function main() {
             bio: 'Eminem is an American rapper, songwriter, and producer. He is one of the most influential and successful artists of the 21st century.',
             tags: {
                 connect: [{ name: 'Хип-хоп' }, { name: 'США' }, { name: 'Легенда' }]  // связь!
+            },
+            albums: {
+                create: [
+                    { name: 'The Eminem Show', year: 2002 },
+                    { name: 'Slim Shady LP', year: 1999 },
+                ]
+            },
+            awards: {
+                create: [
+                    { name: 'Grammy Award' },
+                ]
             }
         }
     })
@@ -71,6 +104,17 @@ async function main() {
             bio: 'Skrip is a Russian rapper. He is one of the most influential and successful artists of the 21st century.',
             tags: {
                 connect: [{ name: 'Хип-хоп' }, { name: 'Россия' }, { name: 'Новый school' }]
+            },
+            albums: {
+                create: [
+                    { name: 'The Eminem Show', year: 2002 },
+                    { name: 'Slim Shady LP', year: 1999 },
+                ]
+            },
+            awards: {
+                create: [
+                    { name: 'Grammy Award' },
+                ]
             }
         }
     })

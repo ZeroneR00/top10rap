@@ -20,7 +20,6 @@ export default function RapperList({ rappers }: RapperListProps) {
 
     return (
         <div>
-            <h1>Rapper List</h1>
             {/* Search Section */}
             <div className="mb-8">
                 <label className="block text-white font-semibold mb-3 text-lg">
