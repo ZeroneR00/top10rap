@@ -5,11 +5,7 @@ import Tags from '@/app/components/Tags'
 import Image from 'next/image'
 
 
-export default async function RapperPage({
-    params
-}: {
-    params: Promise<{ slug: string }>
-}) {
+export default async function RapperPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
 
     // const rapper = rappers.find(r => r.slug === slug)
@@ -18,7 +14,11 @@ export default async function RapperPage({
         where: {
             slug: slug
         },
-        include: { tags: true }
+        include: {
+            tags: true,
+            albums: true,
+            awards: true
+        }
     })
 
     if (!rapper) {
@@ -65,11 +65,11 @@ export default async function RapperPage({
                         <div className="space-y-4">
                             <div className="p-3 bg-gray-800 rounded-lg">
                                 <p className="text-sm text-gray-400">Альбомы</p>
-                                <p className="text-xl font-bold">5</p>
+                                <p className="text-xl font-bold">{rapper.albums.length}</p>
                             </div>
                             <div className="p-3 bg-gray-800 rounded-lg">
                                 <p className="text-sm text-gray-400">Награды</p>
-                                <p className="text-xl font-bold">12</p>
+                                <p className="text-xl font-bold">{rapper.awards.length}</p>
                             </div>
                         </div>
                     </div>

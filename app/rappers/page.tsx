@@ -3,15 +3,19 @@ import Link from 'next/link'
 import RapperList from "../components/RapperList";
 
 
-export default async function Rapper({ searchParams }: { searchParams: Promise<{ tag?: string }> })  {
+export default async function Rapper({ searchParams }: { searchParams: Promise<{ tag?: string }> }) {
     const params = await searchParams
     const selectedTag = params.tag
 
     const rappers = await prisma.rapper.findMany({
-        where: selectedTag 
+        where: selectedTag
             ? { tags: { some: { name: selectedTag } } }
             : {},
-        include: { tags: true }
+        include: {
+            tags: true,
+            albums: true,
+            awards: true
+        }
     })
 
     return (
