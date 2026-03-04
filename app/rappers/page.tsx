@@ -31,6 +31,19 @@ export default async function Rapper({ searchParams }: { searchParams: Promise<{
                     </p>
                 </div>
 
+                {selectedTag && (
+                    <div className="mb-6 text-center">
+                        <span className="text-gray-400">Фильтр: </span>
+                        <span className="text-purple-400 font-bold">{selectedTag}</span>
+                        <Link
+                            href="/rappers"
+                            className="ml-4 text-sm text-gray-500 hover:text-white"
+                        >
+                            ✕ Сбросить
+                        </Link>
+                    </div>
+                )}
+
                 <RapperList rappers={rappers} />
 
                 {/* Back Button */}

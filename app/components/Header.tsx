@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AuthButton from "./AuthButton";
 
 export default function Header() {
     return (
@@ -11,6 +12,7 @@ export default function Header() {
                     <Link href="/" className="hover:text-blue-300">Главная</Link>
                     <Link href="/about" className="hover:text-blue-300">О сайте</Link>
                 </nav>
+                <AuthButton/>
             </div>
         </header>
     )

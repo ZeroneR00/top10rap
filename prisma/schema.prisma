@@ -1,58 +1,128 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  // output   = "../app/generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
+enum Role {
+  USER
+  ADMIN
+}
+
+model Account {
+  id                    String    @id @default(cuid())
+  userId                String
+  accountId             String
+  providerId            String
+  accessToken           String?
+  refreshToken          String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  idToken               String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("account")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  token        String @unique
+  expiresAt    DateTime
+  ipAddress    String?
+  userAgent    String?
+  userId       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  role          Role      @default(USER)
+  name          String?
+  email         String?   @unique
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  comments      Comment[]
+}
+
+model News {
+  id        String    @id @default(cuid())
+  title     String
+  mainText  String
+  comments  Comment[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  comment   String
+  author    User     @relation(fields: [authorId], references: [id])
+  news      News     @relation(fields: [newsId], references: [id])
+  authorId  String
+  newsId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Rapper {
-  id Int @id @default(autoincrement())
-  slug String @unique
-  name String
-  realName String?
-  image String
-  rank Int
-  tags Tag[]
-  bio String?
-  albums Album[]
-  awards Award[]
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  name      String
+  realName  String?
+  image     String
+  rank      Int
+  tags      Tag[]
+  bio       String?
+  albums    Album[]
+  awards    Award[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Tag {
-  id Int @id @default(autoincrement())
-  name String @unique
+  id        String   @id @default(cuid())
+  name      String   @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  rappers Rapper[]
+  rappers   Rapper[]
 }
 
 model Album {
-  id Int @id @default(autoincrement())
-  name String
-  year Int
+  id        String   @id @default(cuid())
+  name      String
+  year      Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  rapper Rapper @relation(fields: [rapperId], references: [id])
-  rapperId Int
+  rapper    Rapper   @relation(fields: [rapperId], references: [id])
+  rapperId  String
 }
 
 model Award {
-  id Int @id @default(autoincrement())
-  name String
+  id        String   @id @default(cuid())
+  name      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  rapper Rapper @relation(fields: [rapperId], references: [id])
-  rapperId Int
+  rapper    Rapper   @relation(fields: [rapperId], references: [id])
+  rapperId  String
 }
