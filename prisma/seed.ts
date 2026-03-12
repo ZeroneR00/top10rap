@@ -4,10 +4,12 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-    await prisma.rapper.deleteMany({})
-    await prisma.tag.deleteMany({})
+    await prisma.news.deleteMany({})
     await prisma.album.deleteMany({})
     await prisma.award.deleteMany({})
+    await prisma.rapper.deleteMany({})
+    await prisma.tag.deleteMany({})
+
 
     console.log('🗑️ Cleared database')
 
@@ -44,6 +46,34 @@ async function main() {
                     { name: 'Grammy Award' },
                 ]
             }
+        }
+    })
+
+    await prisma.news.create({
+        data: {
+            title: 'первая новость',
+            mainText: 'Кизару шарит но крыса еще та'
+        }
+    })
+
+    await prisma.news.create({
+        data: {
+            title: 'вторая новость',
+            mainText: 'Эминем стал черным (?!)'
+        }
+    })
+
+    await prisma.news.create({
+        data: {
+            title: 'треяя новость',
+            mainText: '50 копеек стал писать поп песни для группы Любэ. Кстати, он является автором песни про коня'
+        }
+    })
+
+    await prisma.news.create({
+        data: {
+            title: 'Четвертая новость',
+            mainText: 'Я научился считать, ура !'
         }
     })
 

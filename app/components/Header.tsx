@@ -11,6 +11,7 @@ export default function Header() {
                 <nav className="flex gap-4">
                     <Link href="/" className="hover:text-blue-300">Главная</Link>
                     <Link href="/about" className="hover:text-blue-300">О сайте</Link>
+                    <Link href="/news" className="hover:text-blue-300">Новости</Link>
                 </nav>
                 <AuthButton/>
             </div>
