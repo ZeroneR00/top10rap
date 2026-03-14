@@ -58,7 +58,6 @@ export default async function NewsPage({ params }: { params: Promise<{ id: strin
                     {/* Comment Form placeholder — сюда придёт компонент */}
                     <div className="bg-gray-900 border border-dashed border-gray-700 rounded-2xl p-6 mb-6 text-center text-gray-600 text-sm">
                         <Comments newsId={news.id} />
-                        Здесь будет форма комментариев
                     </div>
 
                     {/* Comments List */}
