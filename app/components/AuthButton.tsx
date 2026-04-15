@@ -9,8 +9,6 @@ export default function AuthButton() {
 
     const {
         data: session,
-        isPending,
-        error
     } = authClient.useSession()
 
     // if (isPending) return <div>Loading...</div>

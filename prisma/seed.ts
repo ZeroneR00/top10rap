@@ -148,6 +148,13 @@ async function main() {
             }
         }
     })
+
+    await prisma.user.create({
+        data: {
+            
+        }
+    })
+    
     // const rappers = await prisma.rapper.createMany({
     //     data: [
     //         { name: 'Kanye West', slug: 'kanye-west', image: '/public/images/rappers/photo.jpg', rank: 1, bio: 'Kanye West is an American rapper, songwriter, and fashion designer. He is one of the most influential and successful artists of the 21st century.', },

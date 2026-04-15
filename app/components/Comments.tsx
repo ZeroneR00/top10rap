@@ -12,8 +12,6 @@ export default function Comments({ newsId }: CommentsProps) {
     const [comment, setComment] = useState('');
     const {
         data: session,
-        isPending,
-        error
     } = authClient.useSession()
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

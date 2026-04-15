@@ -1,5 +1,6 @@
 import Link from "next/link";
 import AuthButton from "./AuthButton";
+import AdminButton from "./AdminButton";
 
 export default function Header() {
     return (
@@ -13,6 +14,7 @@ export default function Header() {
                     <Link href="/about" className="hover:text-blue-300">О сайте</Link>
                     <Link href="/news" className="hover:text-blue-300">Новости</Link>
                 </nav>
+                <AdminButton/>
                 <AuthButton/>
             </div>
         </header>
