@@ -12,6 +12,10 @@ export const auth = betterAuth({
         enabled: true,
     },
     plugins: [
-        admin(),
+        admin({
+            adminRoles: ["admin"],
+            defaultRole: "user"
+        }),
     ]
+
 })

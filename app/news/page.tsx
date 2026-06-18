@@ -1,6 +1,6 @@
 import { prisma } from "@/app/lib/prisma"
 import Link from "next/link"
-import NewBanner from "../components/NewBanner"
+import NewsCard from "../components/NewsCard"
 
 export default async function News() {
     const news = await prisma.news.findMany({
@@ -25,7 +25,7 @@ export default async function News() {
                             href={`/news/${n.id}`}
                             className="group block"
                         >
-                            <NewBanner neww={n} />
+                            <NewsCard newsItem={n} />
                         </Link>
                     ))}
                 </div>

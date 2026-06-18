@@ -1,6 +1,6 @@
 import { News } from '@prisma/client'
 
-export default function RapperCard({ neww }: { neww: News }) {
+export default function NewsCard({ newsItem }: { newsItem: News }) {
     return (
         <div className="p-6 bg-gray-800 border border-gray-700 rounded-xl shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:border-purple-500 cursor-pointer">
             <div className="flex items-center justify-between mb-4">
@@ -10,13 +10,13 @@ export default function RapperCard({ neww }: { neww: News }) {
                 </span>
             </div>
             <p className="text-gray-400 mb-2">
-                <span className="text-gray-500">Название новости:</span> {neww.title}
+                <span className="text-gray-500">Название новости:</span> {newsItem.title}
             </p>
             <p className="text-gray-400 mb-2">
-                <span className="text-gray-500">Айди новости:</span> {neww.id}
+                <span className="text-gray-500">Айди новости:</span> {newsItem.id}
             </p>
             <p className="text-gray-300 mt-4 line-clamp-3 text-sm">
-                {neww.mainText}
+                {newsItem.mainText}
             </p>
         </div>
     )

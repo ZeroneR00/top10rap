@@ -8,8 +8,6 @@ import Image from 'next/image'
 export default async function RapperPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params
 
-    // const rapper = rappers.find(r => r.slug === slug)
-
     const rapper = await prisma.rapper.findFirst({
         where: {
             slug: slug

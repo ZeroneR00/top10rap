@@ -11,7 +11,7 @@ export default function AdminButton() {
 
     return (
         <>
-         {session?.user.role === ("ADMIN") ? (
+         {session?.user.role === ("admin") ? (
            
            <Link href="/admin" className="hover:text-red-00">АДМИНКА</Link>
 

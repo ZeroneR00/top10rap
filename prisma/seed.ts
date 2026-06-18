@@ -149,11 +149,11 @@ async function main() {
         }
     })
 
-    await prisma.user.create({
-        data: {
+    // await prisma.user.create({
+    //     data: {
             
-        }
-    })
+    //     }
+    // })
     
     // const rappers = await prisma.rapper.createMany({
     //     data: [
