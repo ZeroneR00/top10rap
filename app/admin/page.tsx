@@ -8,7 +8,6 @@ export default async function AdminPage() {
     const news = await prisma.news.findMany({
         orderBy: { createdAt: 'desc' }
     })
-    console.log(news)
     return (
         <main className="min-h-screen bg-gray-950 text-white p-8">
             <div className="max-w-4xl mx-auto">

@@ -10,6 +10,8 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const [isLogin, setIsLogin] = useState(true)
+    const [banAlert, setBanAlert] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -19,26 +21,24 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         const password = formData.get('password') as string;
         const name = formData.get('name') as string;
 
-        try {
-            if (isLogin) {
-                // Логин
-                await authClient.signIn.email({
-                    email,
-                    password,
-                })
-            } else {
-                // Регистрация
-                await authClient.signUp.email({
-                    email,
-                    password,
-                    name,
-                })
-            }
 
-            onClose() // Закрываем модалку после успеха
-        } catch (error) {
-            console.error('Ошибка авторизации:', error)
-            alert('Ошибка! Проверь данные')
+        if (isLogin) {
+            // Логин
+            const result = await authClient.signIn.email({ email, password })
+            console.log(result)
+            if (result?.error) {
+                setError(result.error.message ?? 'Ошибка входа')
+                // setError(result?.error.message)
+            } else {
+                onClose()
+            }
+        } else {
+            // Регистрация
+            await authClient.signUp.email({
+                email,
+                password,
+                name,
+            })
         }
     }
 
@@ -92,6 +92,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     >
                         {isLogin ? 'Войти' : 'Зарегистрироваться'}
                     </button>
+
+                    {error && <div className="text-red-500 text-center mt-4">Вы заблокированы</div>}
+                    {error && <div className="text-red-500 text-center mt-4">Причина бана {error} </div>}
                 </form>
 
                 <p className="text-gray-400 text-center mt-4">

@@ -9,13 +9,19 @@ export async function proxy(request: NextRequest) {
         headers: await headers()
     })
 
-	if(!session || session?.user.role !== "admin") {
-        return NextResponse.next();
-        // return NextResponse.redirect(new URL("/", request.url));
+    console.log("path:", request.nextUrl.pathname, "banned:", session?.user.banned)
+
+
+    if (session?.user.banned === true && request.nextUrl.pathname !== "/banned") {
+        return NextResponse.redirect(new URL("/banned", request.url));
     }
+
+	if (request.nextUrl.pathname.startsWith("/admin") && (!session || session?.user.role !== "admin")) {
+        return NextResponse.redirect(new URL("/", request.url));
+    }
+    
     return NextResponse.next();
 }
-
 export const config = {
-	matcher: ['/admin/:path*']
+    matcher: ['/((?!api|_next/static|_next/image|favicon.ico).*)']
 }
