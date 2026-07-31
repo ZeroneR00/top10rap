@@ -28,7 +28,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             console.log(result)
             if (result?.error) {
                 setError(result.error.message ?? 'Ошибка входа')
-                // setError(result?.error.message)
             } else {
                 onClose()
             }
@@ -39,10 +38,13 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                 password,
                 name,
             })
+            onClose()
         }
     }
 
     if (!isOpen) return null
+
+    console.log( error )
 
     return (
         <div
@@ -92,9 +94,12 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                     >
                         {isLogin ? 'Войти' : 'Зарегистрироваться'}
                     </button>
-
-                    {error && <div className="text-red-500 text-center mt-4">Вы заблокированы</div>}
-                    {error && <div className="text-red-500 text-center mt-4">Причина бана {error} </div>}
+                    {error && <div className="text-red-500 text-center mt-4">{error}</div>}
+                    {/* {error && error.includes('403') && <div className="text-red-500 text-center mt-4">Ваш аккаунт заблокирован</div>}
+                    {error && error.includes('401') && <div className="text-red-500 text-center mt-4">Неверный email или пароль</div>}
+                    {error && error.includes('409') && <div className="text-red-500 text-center mt-4">Пользователь уже существует</div>}
+                    {error && error.includes('400') && <div className="text-red-500 text-center mt-4">Неверный email или пароль</div>}
+                    {error && error.includes('400') && <div className="text-red-500 text-center mt-4">Неверный email или пароль</div>} */}
                 </form>
 
                 <p className="text-gray-400 text-center mt-4">

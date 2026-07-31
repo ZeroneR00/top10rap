@@ -5,6 +5,7 @@ import AdminButton from "./AdminButton";
 export default function Header() {
     return (
         <header className="bg-gray-800 text-white p-4">
+            
             <div className="max-w-4xl mx-auto flex justify-between items-center">
                 <Link href="/">
                     <h1 className="text-2xl font-bold">🎤 Топ реперов</h1>

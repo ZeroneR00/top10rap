@@ -20,7 +20,7 @@ export default async function AdminPage() {
 
                 {/* Кнопка создать */}
 
-                <div className="mb-8 ml-8">
+                <div className="mb-4">
                     <Link href="/admin/news/create">
                         <button className="px-6 py-3 bg-purple-600 rounded-lg hover:bg-purple-700 font-semibold">
                             + Добавить новость
@@ -47,10 +47,10 @@ export default async function AdminPage() {
                                     >
                                         <AdminNewsCard newsItem={n} />
                                     </Link>
-                                    <div className="flex gap-3">
-                                        {/* <button type="button" className="px-4 py-2 bg-gray-800 rounded-lg hover:bg-gray-700 text-sm">
+                                    <div className="flex gap-3 mt-3">
+                                        <button type="button" className="px-4 py-2 bg-gray-800 rounded-lg hover:bg-gray-700 text-sm">
                                             Редактировать
-                                        </button> */}
+                                        </button>
                                         <form action={adminNewsDelete.bind(null, n.id)}>
                                             <button className="px-4 py-2 bg-red-600 rounded-lg hover:bg-red-700 text-sm">
                                                 Удалить

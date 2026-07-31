@@ -28,6 +28,7 @@ async function main() {
     await prisma.rapper.create({
         data: {
             name: 'Kanye West',
+            realName: 'Ололо Ололокевичь',
             slug: 'kanye-west',
             image: '/images/rappers/photo.jpg',
             rank: 1,
@@ -80,6 +81,7 @@ async function main() {
     await prisma.rapper.create({
         data: {
             name: 'Kizaru',
+            realName: 'Ололо Ололокевичь',
             slug: 'kizaru',
             image: '/images/rappers/photo.jpg',
             rank: 2,
@@ -104,6 +106,7 @@ async function main() {
     await prisma.rapper.create({
         data: {
             name: 'Eminem',
+            realName: 'Ололо Ололокевичь',
             slug: 'eminem',
             image: '/images/rappers/photo.jpg',
             rank: 3,
@@ -128,6 +131,7 @@ async function main() {
     await prisma.rapper.create({
         data: {
             name: 'Skrip',
+            realName: 'Ололо Ололокевичь',
             slug: 'skrip',
             image: '/images/rappers/photo.jpg',
             rank: 4,

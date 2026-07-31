@@ -16,15 +16,15 @@ export default function Comments({ newsId }: CommentsProps) {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setComment('')
         await addComment(newsId, comment);
+        setComment('')
 
     }
     const handleKeyDown = async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            setComment('')
             await addComment(newsId, comment);
+            setComment('')
         }
     }
 
