@@ -3,7 +3,6 @@ import Link from 'next/link'
 import { prisma } from '@/app/lib/prisma'
 import Tags from '@/app/components/Tags'
 import Image from 'next/image'
-import { rappers } from '@/app/data/rappers'
 
 
 export default async function RapperPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -24,7 +23,6 @@ export default async function RapperPage({ params }: { params: Promise<{ slug: s
         notFound()
     }
 
-    console.log(rapper)
     return (
 
         <div className="min-h-screen bg-black text-white p-4 md:p-8 flex items-center justify-center">
@@ -43,7 +41,7 @@ export default async function RapperPage({ params }: { params: Promise<{ slug: s
                             </p>
                         </div>
                         <span className="bg-yellow-500 text-black px-4 py-1 rounded-full text-sm font-bold">
-                            Ранг: Кто мы такие что бы кого то судить ? 
+                            Ранг: #{rapper.rank}
                         </span>
                     </div>
                 </div>
@@ -94,16 +92,7 @@ export default async function RapperPage({ params }: { params: Promise<{ slug: s
 
                         {/* Доп информация */}
                         <Tags tags={rapper.tags} />
-                        {/* <div className="flex gap-3 mb-6">
-                            <span className="px-3 py-1 bg-gray-800 rounded-full">Хип-хоп</span>
-                            <span className="px-3 py-1 bg-gray-800 rounded-full">Трэп</span>
-                            <span className="px-3 py-1 bg-red-600 rounded-full font-bold">Легенда</span>
-                        </div> */}
 
-                        {/* Кнопка */}
-                        {/* <button className="w-full md:w-auto px-6 py-3 bg-purple-600 rounded-lg font-semibold hover:bg-purple-700 transition">
-                            Слушать треки
-                        </button> */}
                         <Link
                             className="inline-block px-8 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-purple-500/50"
                             href="/rappers"

@@ -17,10 +17,13 @@ export default function AuthButton() {
     return (
         <>
             {session ? (
-                <div className="flex items-center gap-4">
-                    <span className="text-white">Привет, {session.user.name}!</span>
+                <div className="flex items-center gap-2 bg-gray-900/60 border border-gray-700 rounded-full pl-1.5 pr-2 py-1.5">
+                    <div className="w-7 h-7 rounded-full bg-purple-600 flex items-center justify-center text-xs font-bold text-white shrink-0">
+                        {session.user.name?.[0]?.toUpperCase() ?? '?'}
+                    </div>
+                    <span className="text-sm text-gray-200 max-w-40 truncate">{session.user.name}</span>
                     <button
-                        className="px-4 py-2 bg-red-600 rounded-lg hover:bg-red-700"
+                        className="px-3 py-1 bg-red-600 rounded-full text-xs font-semibold hover:bg-red-700 transition-colors"
                         onClick={() => authClient.signOut()}
                     >
                         Выйти

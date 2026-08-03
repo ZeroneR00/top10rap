@@ -9,9 +9,6 @@ export async function proxy(request: NextRequest) {
         headers: await headers()
     })
 
-    console.log("path:", request.nextUrl.pathname, "banned:", session?.user.banned)
-
-
     if (session?.user.banned === true && request.nextUrl.pathname !== "/banned") {
         return NextResponse.redirect(new URL("/banned", request.url));
     }

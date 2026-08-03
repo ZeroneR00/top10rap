@@ -1,10 +1,12 @@
 'use server' 
 
 import { headers } from "next/headers";
-import { auth } from "../lib/auth";
+import { auth, requireAdmin } from "../lib/auth";
 import { revalidatePath } from "next/cache"
 
 export async function adminUserBanAction(userID: string) {
+    await requireAdmin()
+
     await auth.api.banUser({
         body: {
             userId: userID,

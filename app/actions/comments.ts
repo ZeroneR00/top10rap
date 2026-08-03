@@ -14,9 +14,15 @@ export async function addComment(newsId: string, text: string) {
     if (!session) {
         throw new Error('Не авторизован')
     }
+
+    const trimmedText = text.trim()
+    if (!trimmedText) {
+        throw new Error('Комментарий не может быть пустым')
+    }
+
     await prisma.comment.create({
         data: {
-            comment: text,
+            comment: trimmedText,
             authorId: session.user.id,
             newsId: newsId
         }

@@ -10,7 +10,6 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
     const [isLogin, setIsLogin] = useState(true)
-    const [banAlert, setBanAlert] = useState(false)
     const [error, setError] = useState<string | null>(null)
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -21,11 +20,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
         const password = formData.get('password') as string;
         const name = formData.get('name') as string;
 
-
         if (isLogin) {
             // Логин
             const result = await authClient.signIn.email({ email, password })
-            console.log(result)
             if (result?.error) {
                 setError(result.error.message ?? 'Ошибка входа')
             } else {
@@ -33,18 +30,20 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
             }
         } else {
             // Регистрация
-            await authClient.signUp.email({
+            const result = await authClient.signUp.email({
                 email,
                 password,
                 name,
             })
-            onClose()
+            if (result?.error) {
+                setError(result.error.message ?? 'Ошибка регистрации')
+            } else {
+                onClose()
+            }
         }
     }
 
     if (!isOpen) return null
-
-    console.log( error )
 
     return (
         <div
@@ -95,11 +94,6 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
                         {isLogin ? 'Войти' : 'Зарегистрироваться'}
                     </button>
                     {error && <div className="text-red-500 text-center mt-4">{error}</div>}
-                    {/* {error && error.includes('403') && <div className="text-red-500 text-center mt-4">Ваш аккаунт заблокирован</div>}
-                    {error && error.includes('401') && <div className="text-red-500 text-center mt-4">Неверный email или пароль</div>}
-                    {error && error.includes('409') && <div className="text-red-500 text-center mt-4">Пользователь уже существует</div>}
-                    {error && error.includes('400') && <div className="text-red-500 text-center mt-4">Неверный email или пароль</div>}
-                    {error && error.includes('400') && <div className="text-red-500 text-center mt-4">Неверный email или пароль</div>} */}
                 </form>
 
                 <p className="text-gray-400 text-center mt-4">

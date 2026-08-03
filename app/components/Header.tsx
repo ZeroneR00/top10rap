@@ -15,8 +15,10 @@ export default function Header() {
                     <Link href="/about" className="hover:text-blue-300">О сайте</Link>
                     <Link href="/news" className="hover:text-blue-300">Новости</Link>
                 </nav>
-                <AdminButton/>
-                <AuthButton/>
+                <div className="flex items-center gap-3">
+                    <AdminButton/>
+                    <AuthButton/>
+                </div>
             </div>
         </header>
     )

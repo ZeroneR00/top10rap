@@ -1,4 +1,4 @@
-import { adminСreateNews } from "@/app/actions/adminСreateNewsAction"
+import { adminCreateNews } from "@/app/actions/adminCreateNewsAction"
 import Link from "next/link"
 
 export default function AdminCreateNewsPage() {
@@ -13,7 +13,7 @@ export default function AdminCreateNewsPage() {
                     <h1 className="text-4xl font-black">Создать новость</h1>
                 </div>
 
-                <form action={adminСreateNews} className="flex flex-col gap-6">
+                <form action={adminCreateNews} className="flex flex-col gap-6">
                     <div className="flex flex-col gap-2">
                         <label className="text-sm text-gray-400 uppercase tracking-widest">Заголовок</label>
                         <input

@@ -14,17 +14,20 @@ export default function Comments({ newsId }: CommentsProps) {
         data: session,
     } = authClient.useSession()
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const submitComment = async () => {
+        if (!comment.trim()) return
         await addComment(newsId, comment);
         setComment('')
+    }
 
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        await submitComment();
     }
     const handleKeyDown = async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
-            await addComment(newsId, comment);
-            setComment('')
+            await submitComment();
         }
     }
 
